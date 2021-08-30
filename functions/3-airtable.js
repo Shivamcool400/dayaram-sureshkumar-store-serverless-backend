@@ -15,7 +15,7 @@ exports.handler = async (event,context, cb) => {
        const products = records.map((product)=> {
         const {id} = product;
         const {name,image,price} = product.fields
-        const url = image[0].url
+        const url = image[0].url 
         return{id,name,url,price}
        })
        return {
