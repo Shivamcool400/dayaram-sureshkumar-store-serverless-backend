@@ -15,6 +15,9 @@ exports.handler = async (event, context, cb) => {
 
     try {
       const product = await airtable.retrieve(id)
+      const items=product.fields
+      items.id = id
+      
       if (product.error) {
         return {
           headers: {
@@ -29,7 +32,7 @@ exports.handler = async (event, context, cb) => {
           'Access-Control-Allow-Origin': '*',
         },
         statusCode: 200,
-        body: JSON.stringify(product),
+        body: JSON.stringify(items),
       }
     } catch (error) {
       return {
