@@ -29,7 +29,7 @@ exports.handler = async (event, context, cb) => {
           'Access-Control-Allow-Origin': '*',
         },
         statusCode: 200,
-        body: JSON.stringify(product),
+        body: JSON.stringify(product.fields),
       }
     } catch (error) {
       return {
@@ -45,9 +45,9 @@ exports.handler = async (event, context, cb) => {
     const { records } = await airtable.list()
     const products = records.map((product) => {
       const { id } = product
-      const { name, images, price,colors,company,description,category,shipping } = product.fields
+      const { name, images, price,colors,company,description,category,shipping,featured } = product.fields
       const image = images[0].url
-      return { id, name, image, price,colors,company,description,category,shipping }
+      return { id, name, image, price,colors,company,description,category,shipping,featured }
     })
     return {
       headers: {
